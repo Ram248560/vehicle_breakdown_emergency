@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class VehicleBreakdownSupportApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(VehicleBreakdownSupportApplication.class, args);
+		SpringApplication.run(VehicleBreakdownSupportApplication.class, args) ;
 	}
 
 }
