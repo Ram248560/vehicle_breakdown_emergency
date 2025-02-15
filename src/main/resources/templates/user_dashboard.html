@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Dashboard</title>
+   <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h2>Welcome, <span th:text="${user.name}"></span>!</h2>
+    
+    <h3>Request Breakdown Support</h3>
+    <form th:action="@{/breakdown/request}" method="post">
+        <input type="text" name="location" placeholder="Your Location" required><br>
+        <input type="text" name="vehicleType" placeholder="Vehicle Type" required><br>
+        <textarea name="issueDescription" placeholder="Describe the issue" required></textarea><br>
+        <button type="submit">Submit Request</button>
+    </form>
+
+    <h3>Your Requests</h3>
+    <table>
+        <tr>
+            <th>Location</th>
+            <th>Vehicle</th>
+            <th>Issue</th>
+            <th>Status</th>
+        </tr>
+        <tr th:each="request : ${requests}">
+            <td th:text="${request.location}"></td>
+            <td th:text="${request.vehicleType}"></td>
+            <td th:text="${request.issueDescription}"></td>
+            <td th:text="${request.status}"></td>
+        </tr>
+    </table>
+
+    <a href="/logout">Logout</a>
+    
+    <script th:src="@{/form-validation.js}"></script>
+    
+</body>
+</html>

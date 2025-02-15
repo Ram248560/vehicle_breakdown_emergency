@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h2>Admin Dashboard</h2>
+    
+    <h3>All Breakdown Requests</h3>
+    <table>
+        <tr>
+            <th>User</th>
+            <th>Location</th>
+            <th>Vehicle</th>
+            <th>Issue</th>
+            <th>Status</th>
+            <th>Update Status</th>
+        </tr>
+        <tr th:each="request : ${requests}">
+            <td th:text="${request.user.name}"></td>
+            <td th:text="${request.location}"></td>
+            <td th:text="${request.vehicleType}"></td>
+            <td th:text="${request.issueDescription}"></td>
+            <td th:text="${request.status}"></td>
+            <td>
+                <form th:action="@{/admin/update-status/{id}(id=${request.id})}" method="post">
+                    <select name="status">
+                        <option value="Pending">Pending</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Resolved">Resolved</option>
+                    </select>
+                    <button type="submit">Update</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+    <a href="/logout">Logout</a>
+    
+    <script th:src="@{/admin-status-update.js}"></script>
+    
+</body>
+</html>
